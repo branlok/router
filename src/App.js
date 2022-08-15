@@ -1,5 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -18,8 +19,33 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<X />}>
+            <Route path="about" element={<h1>about</h1>} />
+            <Route path="dashboard" element={<h1>dashboard</h1>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
+let X = ({ children }) => (
+  <div>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+      <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+    </ul>
+    <Outlet />
+  </div>
+);
 export default App;
